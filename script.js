@@ -8,9 +8,11 @@ window.addEventListener('scroll', function() {
 let menuBtn = document.querySelector('.menu-btn');
 let menuIcon = document.querySelector('.menu-btn i');
 let navLinks = document.querySelector('.nav-links');
+let navOverlay = document.getElementById('navOverlay');
 
 menuBtn.onclick = () => {
     navLinks.classList.toggle('active');
+    if (navOverlay) navOverlay.classList.toggle('active');
     if(navLinks.classList.contains('active')){
         menuIcon.classList.remove('fa-bars');
         menuIcon.classList.add('fa-xmark');
@@ -19,6 +21,16 @@ menuBtn.onclick = () => {
         menuIcon.classList.add('fa-bars');
     }
 };
+
+// Close menu when clicking overlay
+if (navOverlay) {
+    navOverlay.onclick = () => {
+        navLinks.classList.remove('active');
+        navOverlay.classList.remove('active');
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+    };
+}
 
 // Active link on scroll
 let sections = document.querySelectorAll('section[id]');
@@ -42,6 +54,7 @@ if (sections.length > 0) {
 
         // Remove toggle icon and navbar when click navbar link (scroll)
         navLinks.classList.remove('active');
+        if (navOverlay) navOverlay.classList.remove('active');
         menuIcon.classList.remove('fa-xmark');
         menuIcon.classList.add('fa-bars');
     };
