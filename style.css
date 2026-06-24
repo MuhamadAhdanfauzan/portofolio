@@ -979,13 +979,13 @@ footer p {
         margin: 2rem 0;
         text-align: center;
         opacity: 0;
-        transform: translateX(2rem);
+        transform: translateY(-1.5rem);
         transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .nav-links.active a {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
     
     .nav-links.active a:nth-child(1) { transition-delay: 0.05s; }
