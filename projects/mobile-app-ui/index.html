@@ -93,6 +93,20 @@
         </div>
     </footer>
 
+    <!-- Floating Music Player -->
+    <div id="musicPlayerBtn" class="music-float-btn" onclick="toggleMusicPlayer()">
+        <i class="fas fa-music"></i>
+    </div>
+    <div id="musicPlayerContainer" class="music-player-container">
+        <div class="music-player-header">
+            <span>🎵 Now Playing</span>
+            <button onclick="toggleMusicPlayer()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="music-player-body">
+            <iframe id="musicPlayerIframe" src="https://www.youtube.com/embed/ChPRcGaIZx8?enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <script src="../../script.js"></script>
 </body>
 </html>

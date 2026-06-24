@@ -217,3 +217,28 @@ function showFormStatus(text, type) {
         formStatus.style.display = "none";
     }, 5000);
 }
+
+// Floating Music Player Toggle
+function toggleMusicPlayer() {
+    const container = document.getElementById("musicPlayerContainer");
+    const btn = document.getElementById("musicPlayerBtn");
+    container.classList.toggle("active");
+    
+    if (container.classList.contains("active")) {
+        btn.style.display = "none";
+    } else {
+        btn.style.display = "flex";
+    }
+}
+
+// Close player when clicking outside
+document.addEventListener("click", function(e) {
+    const container = document.getElementById("musicPlayerContainer");
+    const btn = document.getElementById("musicPlayerBtn");
+    if (container && btn) {
+        if (!container.contains(e.target) && !btn.contains(e.target)) {
+            container.classList.remove("active");
+            btn.style.display = "flex";
+        }
+    }
+});
