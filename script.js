@@ -238,11 +238,17 @@ function formatTime(seconds) {
     return mins + ":" + (secs < 10 ? "0" : "") + secs;
 }
 
-// Toggle player visibility
+// Toggle player visibility and auto-play
 function toggleMusicPlayer() {
     const isActive = musicContainer.classList.contains("active");
     if (!isActive) {
         musicContainer.classList.add("active");
+        // Auto-play if not already playing
+        if (!isPlaying) {
+            bgMusic.play().catch(function(e) {
+                console.log("Play prevented:", e);
+            });
+        }
     } else {
         musicContainer.classList.remove("active");
     }
@@ -268,16 +274,12 @@ function togglePlay() {
 bgMusic.addEventListener("play", function() {
     isPlaying = true;
     playPauseBtn.querySelector("i").className = "fas fa-pause";
-    musicBtn.querySelector("i").className = "fas fa-music";
-    musicBtn.classList.add("playing");
     musicContainer.classList.add("playing");
 });
 
 bgMusic.addEventListener("pause", function() {
     isPlaying = false;
     playPauseBtn.querySelector("i").className = "fas fa-play";
-    musicBtn.querySelector("i").className = "fas fa-music";
-    musicBtn.classList.remove("playing");
     musicContainer.classList.remove("playing");
 });
 
