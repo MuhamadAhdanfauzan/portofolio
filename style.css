@@ -936,17 +936,24 @@ footer p {
         top: 100%;
         left: 0;
         width: 100%;
-        padding: 1rem 3%;
+        padding: 0 3%;
         background: var(--bg-color);
         border-top: .1rem solid rgba(0, 0, 0, .2);
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-        display: none;
         flex-direction: column;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        visibility: hidden;
+        transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.4s ease, visibility 0s 0.5s;
     }
 
     .nav-links.active {
-        display: flex;
-        animation: navFadeIn 0.4s ease forwards;
+        max-height: 50rem;
+        opacity: 1;
+        padding: 1rem 3%;
+        visibility: visible;
+        transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.4s ease, visibility 0s 0s;
     }
 
     .nav-links a {
@@ -954,16 +961,7 @@ footer p {
         font-size: 1.8rem;
         margin: 2rem 0;
         text-align: center;
-        opacity: 0;
-        animation: navLinkFade 0.4s ease forwards;
     }
-    
-    .nav-links a:nth-child(1) { animation-delay: 0.05s; }
-    .nav-links a:nth-child(2) { animation-delay: 0.1s; }
-    .nav-links a:nth-child(3) { animation-delay: 0.15s; }
-    .nav-links a:nth-child(4) { animation-delay: 0.2s; }
-    .nav-links a:nth-child(5) { animation-delay: 0.25s; }
-    .nav-links a:nth-child(6) { animation-delay: 0.3s; }
 
     .hero {
         flex-direction: column;
