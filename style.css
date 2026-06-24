@@ -54,10 +54,38 @@ html {
     color: var(--text-color);
     font-weight: 600;
     cursor: default;
+    animation: rgbGlow 3s linear infinite;
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
 }
 
 .logo span {
     color: var(--main-color);
+    animation: rgbGlow 3s linear infinite reverse, rgbPulse 1.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes rgbGlow {
+    0%   { color: #ff6b6b; text-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b; }
+    16%  { color: #ffa94d; text-shadow: 0 0 10px #ffa94d, 0 0 20px #ffa94d; }
+    33%  { color: #ffd43b; text-shadow: 0 0 10px #ffd43b, 0 0 20px #ffd43b; }
+    50%  { color: #69db7c; text-shadow: 0 0 10px #69db7c, 0 0 20px #69db7c; }
+    66%  { color: #4dabf7; text-shadow: 0 0 10px #4dabf7, 0 0 20px #4dabf7; }
+    83%  { color: #da77f2; text-shadow: 0 0 10px #da77f2, 0 0 20px #da77f2; }
+    100% { color: #ff6b6b; text-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b; }
+}
+
+@keyframes rgbPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+}
+
+/* Pause animation on hover for a nice interaction */
+.logo:hover {
+    animation-play-state: paused;
+}
+
+.logo:hover span {
+    animation-play-state: paused;
 }
 
 .nav-links {
@@ -105,6 +133,43 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 27, 41, 0.65);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-img {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content h3 {
