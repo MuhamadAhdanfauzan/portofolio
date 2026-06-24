@@ -145,6 +145,12 @@ contactForm.addEventListener("submit", async function(e) {
         return;
     }
     
+    // Validate email must be @gmail.com
+    if (!email.endsWith("@gmail.com")) {
+        showFormStatus("Please use a valid @gmail.com email address.", "error");
+        return;
+    }
+    
     // Disable button and show loading
     const submitBtn = contactForm.querySelector('input[type="submit"]');
     submitBtn.value = "Sending...";
