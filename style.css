@@ -979,7 +979,7 @@ footer p {
         margin: 2rem 0;
         text-align: center;
         opacity: 0;
-        transform: translateY(-1.5rem);
+        transform: translateY(-2rem);
         transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
