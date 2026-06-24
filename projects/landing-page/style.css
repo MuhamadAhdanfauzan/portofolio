@@ -1,0 +1,9 @@
+/* Landing Page specific preview styles */
+.lp-preview {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.lp-preview i {
+    font-size: 8rem;
+    color: rgba(255,255,255,0.3);
+}

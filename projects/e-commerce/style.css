@@ -1,0 +1,9 @@
+/* E-Commerce specific preview styles */
+.preview-placeholder {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.preview-placeholder i {
+    font-size: 8rem;
+    color: rgba(255,255,255,0.3);
+}
