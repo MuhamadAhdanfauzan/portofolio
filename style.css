@@ -97,7 +97,6 @@ html {
     font-size: 1.7rem;
     color: var(--text-color);
     margin-left: 4rem;
-    transition: .3s;
 }
 
 .nav-links a:hover,
@@ -1480,4 +1479,4 @@ footer p {
     transform: scale(1.05);
 }
 
-}
+
