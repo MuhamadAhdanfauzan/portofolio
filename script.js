@@ -218,27 +218,123 @@ function showFormStatus(text, type) {
     }, 5000);
 }
 
-// Floating Music Player Toggle
+// ===== Floating Music Player =====
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicPlayerBtn");
+const musicContainer = document.getElementById("musicPlayerContainer");
+const playPauseBtn = document.getElementById("playPauseBtn");
+const progressBar = document.getElementById("musicProgress");
+const currentTimeEl = document.getElementById("currentTime");
+const durationEl = document.getElementById("duration");
+const volumeControl = document.getElementById("volumeControl");
+
+let isPlaying = false;
+
+// Format time helper
+function formatTime(seconds) {
+    if (isNaN(seconds)) return "0:00";
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return mins + ":" + (secs < 10 ? "0" : "") + secs;
+}
+
+// Toggle player visibility
 function toggleMusicPlayer() {
-    const container = document.getElementById("musicPlayerContainer");
-    const btn = document.getElementById("musicPlayerBtn");
-    container.classList.toggle("active");
-    
-    if (container.classList.contains("active")) {
-        btn.style.display = "none";
+    const isActive = musicContainer.classList.contains("active");
+    if (!isActive) {
+        musicContainer.classList.add("active");
     } else {
-        btn.style.display = "flex";
+        musicContainer.classList.remove("active");
     }
 }
 
-// Close player when clicking outside
+// Close player (just hide, music keeps playing)
+function closeMusicPlayer() {
+    musicContainer.classList.remove("active");
+}
+
+// Toggle play/pause
+function togglePlay() {
+    if (isPlaying) {
+        bgMusic.pause();
+    } else {
+        bgMusic.play().catch(function(e) {
+            console.log("Play prevented:", e);
+        });
+    }
+}
+
+// Update UI based on play state
+bgMusic.addEventListener("play", function() {
+    isPlaying = true;
+    playPauseBtn.querySelector("i").className = "fas fa-pause";
+    musicBtn.querySelector("i").className = "fas fa-pause";
+    musicBtn.classList.add("playing");
+    musicContainer.classList.add("playing");
+});
+
+bgMusic.addEventListener("pause", function() {
+    isPlaying = false;
+    playPauseBtn.querySelector("i").className = "fas fa-play";
+    musicBtn.querySelector("i").className = "fas fa-play";
+    musicBtn.classList.remove("playing");
+    musicContainer.classList.remove("playing");
+});
+
+// Update progress bar
+bgMusic.addEventListener("timeupdate", function() {
+    if (!progressBar.dragging) {
+        const progress = (bgMusic.currentTime / bgMusic.duration) * 100;
+        progressBar.value = progress || 0;
+        currentTimeEl.textContent = formatTime(bgMusic.currentTime);
+    }
+});
+
+// Load metadata (duration)
+bgMusic.addEventListener("loadedmetadata", function() {
+    durationEl.textContent = formatTime(bgMusic.duration);
+});
+
+// Seek when user drags progress bar
+function seekMusic(e) {
+    bgMusic.currentTime = (e.target.value / 100) * bgMusic.duration;
+}
+
+// Prevent progress bar jump while dragging
+progressBar.addEventListener("mousedown", function() {
+    this.dragging = true;
+});
+progressBar.addEventListener("mouseup", function() {
+    this.dragging = false;
+});
+
+// Set volume
+function setVolume(e) {
+    bgMusic.volume = e.target.value / 100;
+}
+
+// Next/Prev (for now just restart or loop)
+function nextMusic() {
+    bgMusic.currentTime = 0;
+    if (!isPlaying) togglePlay();
+}
+
+function prevMusic() {
+    bgMusic.currentTime = 0;
+    if (!isPlaying) togglePlay();
+}
+
+// Auto-play next when song ends (loop for single track)
+bgMusic.addEventListener("ended", function() {
+    bgMusic.currentTime = 0;
+    bgMusic.play();
+});
+
+// Click outside to close player (but music keeps playing)
 document.addEventListener("click", function(e) {
-    const container = document.getElementById("musicPlayerContainer");
-    const btn = document.getElementById("musicPlayerBtn");
-    if (container && btn) {
-        if (!container.contains(e.target) && !btn.contains(e.target)) {
-            container.classList.remove("active");
-            btn.style.display = "flex";
+    if (musicContainer && musicBtn) {
+        if (!musicContainer.contains(e.target) && !musicBtn.contains(e.target)) {
+            closeMusicPlayer();
         }
     }
 });

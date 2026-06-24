@@ -95,16 +95,40 @@
     </footer>
 
     <!-- Floating Music Player -->
+    <audio id="bgMusic" src="../../music/Alan Walker - Faded.mp3" preload="auto"></audio>
     <div id="musicPlayerBtn" class="music-float-btn" onclick="toggleMusicPlayer()">
-        <i class="fas fa-music"></i>
+        <i class="fas fa-play"></i>
     </div>
     <div id="musicPlayerContainer" class="music-player-container">
         <div class="music-player-header">
-            <span>🎵 Now Playing</span>
-            <button onclick="toggleMusicPlayer()"><i class="fas fa-times"></i></button>
+            <div class="music-now-playing">
+                <div class="music-cover">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <div class="music-meta">
+                    <span class="music-title">Alan Walker - Faded</span>
+                    <span class="music-artist">Now Playing</span>
+                </div>
+            </div>
+            <button onclick="closeMusicPlayer()"><i class="fas fa-chevron-down"></i></button>
         </div>
         <div class="music-player-body">
-            <iframe id="musicPlayerIframe" src="https://www.youtube.com/embed/ChPRcGaIZx8?enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div class="music-progress-container">
+                <input type="range" id="musicProgress" class="music-progress-bar" value="0" min="0" max="100" step="0.1" oninput="seekMusic(event)">
+                <div class="music-time">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+            <div class="music-controls">
+                <button onclick="prevMusic()"><i class="fas fa-step-backward"></i></button>
+                <button id="playPauseBtn" class="play-btn" onclick="togglePlay()"><i class="fas fa-play"></i></button>
+                <button onclick="nextMusic()"><i class="fas fa-step-forward"></i></button>
+            </div>
+            <div class="music-volume">
+                <i class="fas fa-volume-up"></i>
+                <input type="range" id="volumeControl" class="volume-bar" value="80" min="0" max="100" oninput="setVolume(event)">
+            </div>
         </div>
     </div>
 

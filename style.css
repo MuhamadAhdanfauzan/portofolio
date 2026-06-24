@@ -1075,6 +1075,14 @@ footer p {
         height: 5rem;
         font-size: 2rem;
     }
+    .music-controls {
+        gap: 1.5rem;
+    }
+    .music-controls .play-btn {
+        width: 4.5rem;
+        height: 4.5rem;
+        font-size: 1.8rem;
+    }
 }
 
 @media (max-width: 450px) {
@@ -1110,15 +1118,20 @@ footer p {
         right: 1rem;
         bottom: 7rem;
     }
-    .music-player-body iframe {
-        height: 16rem;
-    }
     .music-float-btn {
         bottom: 1.5rem;
         right: 1rem;
         width: 4.5rem;
         height: 4.5rem;
         font-size: 1.8rem;
+    }
+    .music-controls {
+        gap: 1rem;
+    }
+    .music-controls .play-btn {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.6rem;
     }
 }
 
@@ -1176,9 +1189,18 @@ footer p {
     box-shadow: 0 0 2.5rem var(--main-color);
 }
 
+.music-float-btn.playing {
+    animation: musicPulseActive 1.5s ease-in-out infinite;
+}
+
 @keyframes musicPulse {
     0%, 100% { box-shadow: 0 0 1rem var(--main-color); }
     50% { box-shadow: 0 0 2.5rem var(--main-color), 0 0 4rem rgba(0, 171, 240, 0.3); }
+}
+
+@keyframes musicPulseActive {
+    0%, 100% { box-shadow: 0 0 1.5rem var(--main-color), 0 0 3rem rgba(0, 171, 240, 0.4); }
+    50% { box-shadow: 0 0 3rem var(--main-color), 0 0 6rem rgba(0, 171, 240, 0.5); }
 }
 
 .music-player-container {
@@ -1203,11 +1225,11 @@ footer p {
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(1rem);
+        transform: translateY(1rem) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -1215,37 +1237,214 @@ footer p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 1.5rem;
-    border-bottom: .1rem solid rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-bottom: .1rem solid rgba(255,255,255,0.08);
 }
 
-.music-player-header span {
+.music-now-playing {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.music-cover {
+    width: 4.5rem;
+    height: 4.5rem;
+    background: var(--bg-color);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--main-color);
+    flex-shrink: 0;
+    animation: coverSpin 8s linear infinite;
+    animation-play-state: paused;
+}
+
+.music-player-container.playing .music-cover {
+    animation-play-state: running;
+}
+
+@keyframes coverSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.music-meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.music-title {
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.music-artist {
+    font-size: 1.1rem;
+    color: var(--main-color);
+    opacity: 0.8;
+    margin-top: 0.2rem;
 }
 
 .music-player-header button {
     background: none;
     border: none;
     color: var(--text-color);
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     cursor: pointer;
     padding: .5rem;
     transition: .3s ease;
+    opacity: 0.7;
+    flex-shrink: 0;
 }
 
 .music-player-header button:hover {
     color: var(--main-color);
+    opacity: 1;
 }
 
 .music-player-body {
-    padding: 1rem;
+    padding: 1.5rem;
 }
 
-.music-player-body iframe {
+/* Progress bar */
+.music-progress-container {
+    margin-bottom: 1.5rem;
+}
+
+.music-progress-bar {
+    -webkit-appearance: none;
+    appearance: none;
     width: 100%;
-    height: 20rem;
+    height: 0.4rem;
+    background: rgba(255,255,255,0.15);
+    border-radius: 0.5rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.music-progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 0.5rem var(--main-color);
+}
+
+.music-progress-bar::-moz-range-thumb {
+    width: 1.4rem;
+    height: 1.4rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    cursor: pointer;
     border: none;
-    border-radius: 1rem;
+    box-shadow: 0 0 0.5rem var(--main-color);
+}
+
+.music-time {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+/* Controls */
+.music-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.music-controls button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: .3s ease;
+    opacity: 0.8;
+}
+
+.music-controls button:hover {
+    color: var(--main-color);
+    opacity: 1;
+}
+
+.music-controls .play-btn {
+    width: 5rem;
+    height: 5rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--bg-color);
+    box-shadow: 0 0 1.5rem rgba(0, 171, 240, 0.3);
+}
+
+.music-controls .play-btn:hover {
+    box-shadow: 0 0 2.5rem var(--main-color);
+    transform: scale(1.05);
+}
+
+/* Volume */
+.music-volume {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.music-volume i {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    width: 1.8rem;
+}
+
+.volume-bar {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 0.3rem;
+    background: rgba(255,255,255,0.15);
+    border-radius: 0.5rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.volume-bar::-moz-range-thumb {
+    width: 1.2rem;
+    height: 1.2rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
 }
