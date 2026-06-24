@@ -607,25 +607,6 @@ section {
     line-height: 1.6;
 }
 
-/* Responsive for Project Detail */
-@media (max-width: 768px) {
-    .project-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .preview-placeholder {
-        height: 250px;
-    }
-    
-    .project-actions {
-        flex-direction: column;
-    }
-    
-    .project-actions .btn {
-        width: 100%;
-    }
-}
-
 /* FAQ Section */
 .faq {
     display: flex;
@@ -937,8 +918,14 @@ footer p {
     footer {
         padding: 2rem 3%;
     }
+
+    /* Fix negative margin on tablet */
+    .hero-img {
+        margin-right: -4rem;
+    }
 }
 
+/* Tablet portrait */
 @media (max-width: 768px) {
     .menu-btn {
         display: block;
@@ -963,8 +950,8 @@ footer p {
 
     .nav-links a {
         display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
+        font-size: 1.8rem;
+        margin: 2rem 0;
         text-align: center;
     }
 
@@ -974,12 +961,22 @@ footer p {
         text-align: center;
     }
 
+    .hero-content h1 {
+        font-size: 4.5rem;
+    }
+    
+    .hero-content h3 {
+        font-size: 2.8rem;
+    }
+
     .hero-content p {
         margin: 2rem auto 3rem;
+        max-width: 100%;
     }
 
     .hero-img {
-        margin-top: 5rem;
+        margin-top: 3rem;
+        margin-right: 0;
     }
 
     .hero-img .img-placeholder {
@@ -987,14 +984,169 @@ footer p {
         height: 35vw;
     }
 
+    /* Section padding for mobile */
+    section {
+        min-height: auto;
+        padding: 8rem 3% 4rem;
+    }
+    
+    .heading {
+        font-size: 3.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    /* Skills section */
+    .skill-box {
+        padding: 1.5rem 1.5rem;
+    }
+
+    /* Portfolio */
+    .portfolio-box {
+        height: 220px;
+    }
+
+    /* FAQ */
+    .faq-question {
+        padding: 1.5rem 1.8rem;
+    }
+    .faq-question span {
+        font-size: 1.5rem;
+    }
+    .faq-answer p {
+        font-size: 1.4rem;
+    }
+    .faq-item.active .faq-answer {
+        max-height: 350px;
+        padding: 0 1.8rem 1.8rem 1.8rem;
+    }
+
+    /* Contact */
     .contact form .input-box input {
         width: 100%;
+    }
+    .contact-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    /* Footer */
+    footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    /* Project detail pages */
+    .project-detail {
+        padding-top: 8rem;
+    }
+    .project-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .preview-placeholder {
+        height: 250px;
+    }
+    .preview-placeholder i {
+        font-size: 5rem;
+    }
+    .project-actions {
+        flex-direction: column;
+    }
+    .project-actions .btn {
+        width: 100%;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .feature-box {
+        padding: 2rem 1.5rem;
+    }
+
+    /* Music player mobile */
+    .music-player-container {
+        width: 28rem;
+        right: 1.5rem;
+        bottom: 8rem;
+    }
+    .music-float-btn {
+        bottom: 2rem;
+        right: 1.5rem;
+        width: 5rem;
+        height: 5rem;
+        font-size: 2rem;
     }
 }
 
 @media (max-width: 450px) {
     html {
-        font-size: 50%;
+        font-size: 48%;
+    }
+    
+    .hero-content h1 {
+        font-size: 3.8rem;
+    }
+    .hero-content h3 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-img .img-placeholder {
+        width: 45vw;
+        height: 45vw;
+    }
+    
+    .heading {
+        font-size: 3rem;
+    }
+
+    /* Nav links stack tighter */
+    .nav-links a {
+        font-size: 1.6rem;
+        margin: 1.5rem 0;
+    }
+
+    /* Music player tiny screens */
+    .music-player-container {
+        width: 26rem;
+        right: 1rem;
+        bottom: 7rem;
+    }
+    .music-player-body iframe {
+        height: 16rem;
+    }
+    .music-float-btn {
+        bottom: 1.5rem;
+        right: 1rem;
+        width: 4.5rem;
+        height: 4.5rem;
+        font-size: 1.8rem;
+    }
+}
+
+/* Landscape phone optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+    section {
+        min-height: auto;
+        padding: 6rem 3% 2rem;
+    }
+    .hero {
+        min-height: auto;
+        padding: 8rem 3% 3rem;
+    }
+    .hero-img .img-placeholder {
+        width: 25vw;
+        height: 25vw;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .hero-video-bg video {
+        display: none;
     }
 }
 
