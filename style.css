@@ -170,6 +170,7 @@ section {
 .hero-img {
     position: relative;
     z-index: 2;
+    margin-right: -8rem;
 }
 
 .hero-content h3 {
@@ -232,8 +233,8 @@ section {
 }
 
 .hero-img .img-placeholder {
-    width: 22vw;
-    height: 22vw;
+    width: 18vw;
+    height: 18vw;
     background: var(--second-bg-color);
     border-radius: 50%;
     display: flex;
@@ -243,7 +244,7 @@ section {
     box-shadow: 0 0 2rem var(--main-color);
     animation: float 4s ease-in-out infinite;
     overflow: hidden;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .hero-img .img-placeholder img {
@@ -982,8 +983,8 @@ footer p {
     }
 
     .hero-img .img-placeholder {
-        width: 40vw;
-        height: 40vw;
+        width: 35vw;
+        height: 35vw;
     }
 
     .contact form .input-box input {
