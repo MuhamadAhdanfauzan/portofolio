@@ -978,22 +978,14 @@ footer p {
         font-size: 1.8rem;
         margin: 2rem 0;
         text-align: center;
-        opacity: 0;
-        transform: translateY(-1.5rem);
-        transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .nav-links.open a {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .nav-links.open a:nth-child(1) { transition-delay: 0.05s; }
-    .nav-links.open a:nth-child(2) { transition-delay: 0.1s; }
-    .nav-links.open a:nth-child(3) { transition-delay: 0.15s; }
-    .nav-links.open a:nth-child(4) { transition-delay: 0.2s; }
-    .nav-links.open a:nth-child(5) { transition-delay: 0.25s; }
-    .nav-links.open a:nth-child(6) { transition-delay: 0.3s; }
+    .nav-links.open a:nth-child(1) { animation: fadeInDown 0.5s ease 0.05s forwards; }
+    .nav-links.open a:nth-child(2) { animation: fadeInDown 0.5s ease 0.1s forwards; }
+    .nav-links.open a:nth-child(3) { animation: fadeInDown 0.5s ease 0.15s forwards; }
+    .nav-links.open a:nth-child(4) { animation: fadeInDown 0.5s ease 0.2s forwards; }
+    .nav-links.open a:nth-child(5) { animation: fadeInDown 0.5s ease 0.25s forwards; }
+    .nav-links.open a:nth-child(6) { animation: fadeInDown 0.5s ease 0.3s forwards; }
 
     .hero {
         flex-direction: column;
@@ -1274,6 +1266,17 @@ footer p {
 }
 
 /* Navbar fade in animation on mobile */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-1.5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes navFadeIn {
     from {
         opacity: 0;
