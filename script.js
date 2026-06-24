@@ -268,7 +268,7 @@ function togglePlay() {
 bgMusic.addEventListener("play", function() {
     isPlaying = true;
     playPauseBtn.querySelector("i").className = "fas fa-pause";
-    musicBtn.querySelector("i").className = "fas fa-pause";
+    musicBtn.querySelector("i").className = "fas fa-music";
     musicBtn.classList.add("playing");
     musicContainer.classList.add("playing");
 });
@@ -276,7 +276,7 @@ bgMusic.addEventListener("play", function() {
 bgMusic.addEventListener("pause", function() {
     isPlaying = false;
     playPauseBtn.querySelector("i").className = "fas fa-play";
-    musicBtn.querySelector("i").className = "fas fa-play";
+    musicBtn.querySelector("i").className = "fas fa-music";
     musicBtn.classList.remove("playing");
     musicContainer.classList.remove("playing");
 });
