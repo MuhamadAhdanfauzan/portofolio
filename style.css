@@ -947,7 +947,7 @@ footer p {
         transition: opacity 0.4s ease;
     }
 
-    .nav-overlay.active {
+    .nav-overlay.open {
         display: block;
         opacity: 1;
     }
@@ -969,7 +969,7 @@ footer p {
         overflow-y: auto;
     }
 
-    .nav-links.active {
+    .nav-links.open {
         transform: translateX(0);
     }
 
@@ -983,17 +983,17 @@ footer p {
         transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .nav-links.active a {
+    .nav-links.open a {
         opacity: 1;
         transform: translateY(0);
     }
     
-    .nav-links.active a:nth-child(1) { transition-delay: 0.05s; }
-    .nav-links.active a:nth-child(2) { transition-delay: 0.1s; }
-    .nav-links.active a:nth-child(3) { transition-delay: 0.15s; }
-    .nav-links.active a:nth-child(4) { transition-delay: 0.2s; }
-    .nav-links.active a:nth-child(5) { transition-delay: 0.25s; }
-    .nav-links.active a:nth-child(6) { transition-delay: 0.3s; }
+    .nav-links.open a:nth-child(1) { transition-delay: 0.05s; }
+    .nav-links.open a:nth-child(2) { transition-delay: 0.1s; }
+    .nav-links.open a:nth-child(3) { transition-delay: 0.15s; }
+    .nav-links.open a:nth-child(4) { transition-delay: 0.2s; }
+    .nav-links.open a:nth-child(5) { transition-delay: 0.25s; }
+    .nav-links.open a:nth-child(6) { transition-delay: 0.3s; }
 
     .hero {
         flex-direction: column;

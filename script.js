@@ -11,9 +11,9 @@ let navLinks = document.querySelector('.nav-links');
 let navOverlay = document.getElementById('navOverlay');
 
 menuBtn.onclick = () => {
-    navLinks.classList.toggle('active');
-    if (navOverlay) navOverlay.classList.toggle('active');
-    if(navLinks.classList.contains('active')){
+    navLinks.classList.toggle('open');
+    if (navOverlay) navOverlay.classList.toggle('open');
+    if(navLinks.classList.contains('open')){
         menuIcon.classList.remove('fa-bars');
         menuIcon.classList.add('fa-xmark');
     } else {
@@ -25,8 +25,8 @@ menuBtn.onclick = () => {
 // Close menu when clicking overlay
 if (navOverlay) {
     navOverlay.onclick = () => {
-        navLinks.classList.remove('active');
-        navOverlay.classList.remove('active');
+        navLinks.classList.remove('open');
+        navOverlay.classList.remove('open');
         menuIcon.classList.remove('fa-xmark');
         menuIcon.classList.add('fa-bars');
     };
@@ -53,8 +53,8 @@ if (sections.length > 0) {
         });
 
         // Remove toggle icon and navbar when click navbar link (scroll)
-        navLinks.classList.remove('active');
-        if (navOverlay) navOverlay.classList.remove('active');
+        navLinks.classList.remove('open');
+        if (navOverlay) navOverlay.classList.remove('open');
         menuIcon.classList.remove('fa-xmark');
         menuIcon.classList.add('fa-bars');
     };
