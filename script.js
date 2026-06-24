@@ -308,11 +308,6 @@ progressBar.addEventListener("mouseup", function() {
     this.dragging = false;
 });
 
-// Set volume
-function setVolume(e) {
-    bgMusic.volume = e.target.value / 100;
-}
-
 // Next/Prev (for now just restart or loop)
 function nextMusic() {
     bgMusic.currentTime = 0;

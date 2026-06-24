@@ -1405,46 +1405,4 @@ footer p {
     transform: scale(1.05);
 }
 
-/* Volume */
-.music-volume {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.music-volume i {
-    font-size: 1.4rem;
-    color: var(--text-color);
-    opacity: 0.6;
-    width: 1.8rem;
-}
-
-.volume-bar {
-    -webkit-appearance: none;
-    appearance: none;
-    flex: 1;
-    height: 0.3rem;
-    background: rgba(255,255,255,0.15);
-    border-radius: 0.5rem;
-    outline: none;
-    cursor: pointer;
-}
-
-.volume-bar::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 1.2rem;
-    height: 1.2rem;
-    background: var(--main-color);
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.volume-bar::-moz-range-thumb {
-    width: 1.2rem;
-    height: 1.2rem;
-    background: var(--main-color);
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
 }
